@@ -1,4 +1,3 @@
-prefix: "&8[&cProxyNoPlugins&8] "
 message: "&cYou're not allowed to see our plugins!"
 protected-commands:
   - "/pl"
