@@ -9,23 +9,25 @@ import net.md_5.bungee.event.EventHandler;
 
 public class CommandListener implements Listener {
 
-    private final ProxyNoPlugins instance;
-    public CommandListener(ProxyNoPlugins instance){
-        this.instance = instance;
-    }
-    @EventHandler
-    public void onCommand(ChatEvent e) {
-        if (e.isCommand()) {
-            ProxiedPlayer p = (ProxiedPlayer)e.getSender();
-            if (!p.hasPermission("plugins.view")) {
-                String command = e.getMessage().split(" ")[0];
-                if(instance.getBlockedCommands().contains(command.toLowerCase())){
-                    e.setCancelled(true);
-                    p.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', instance.getMessage())));
-                }
-            }
-        }
-    }
+	private final ProxyNoPlugins instance;
+
+	public CommandListener(ProxyNoPlugins instance) {
+		this.instance = instance;
+	}
+
+	@EventHandler
+	public void onCommand(ChatEvent event) {
+		if (event.isCommand()) {
+			ProxiedPlayer p = (ProxiedPlayer) event.getSender();
+			if (!p.hasPermission("plugins.view")) {
+				String command = event.getMessage().split(" ")[0];
+				if (instance.getBlockedCommands().contains(command.toLowerCase())) {
+					event.setCancelled(true);
+					p.sendMessage(new TextComponent(ChatColor.translateAlternateColorCodes('&', instance.getMessage())));
+				}
+			}
+		}
+	}
 
 
 }

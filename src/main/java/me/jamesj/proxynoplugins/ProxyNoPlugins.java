@@ -16,16 +16,23 @@ public class ProxyNoPlugins extends Plugin {
 
 	@Override
 	public void onEnable() {
-		try (InputStream is = getResourceAsStream("config.yml");
-			 OutputStream os = new FileOutputStream(new File(getDataFolder(), "config.yml"))) {
-			ByteStreams.copy(is, os);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
+		File configFile = new File(getDataFolder(), "config.yml");
+		if (!configFile.exists()) {
+			try {
+				if (!configFile.getParentFile().exists())
+					configFile.getParentFile().mkdirs();
+				configFile.createNewFile();
+				InputStream is = getResourceAsStream("config.yml");
+				OutputStream os = new FileOutputStream(configFile);
+				ByteStreams.copy(is, os);
+			} catch (IOException e) {
+				e.printStackTrace();
+				return;
+			}
 		}
 		Configuration configuration;
 		try {
-			configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
+			configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(configFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;
