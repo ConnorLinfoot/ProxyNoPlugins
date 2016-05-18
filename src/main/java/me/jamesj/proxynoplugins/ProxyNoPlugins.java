@@ -41,6 +41,7 @@ public class ProxyNoPlugins extends Plugin {
 		message = configuration.getString("message");
 		prefix = configuration.getString("prefix");
 		getProxy().getPluginManager().registerListener(this, new CommandListener(this));
+		getProxy().getPluginManager().registerListener(this, new TabListener(this));
 	}
 
 	@Override
