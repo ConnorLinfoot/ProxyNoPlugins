@@ -1,4 +1,4 @@
 main: me.jamesj.proxynoplugins.ProxyNoPlugins
-version: 2.0
-author: JamesJ
+version: ${project.version}
+author: "JamesJ & ConnorLinfoot"
 name: ProxyNoPlugins
