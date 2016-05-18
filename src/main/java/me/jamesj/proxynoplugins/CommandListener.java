@@ -7,9 +7,6 @@ import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
-/**
- * Created by James on 30/03/2016.
- */
 public class CommandListener implements Listener {
 
     private final ProxyNoPlugins instance;
